@@ -1,0 +1,10 @@
+-Promise
+    -o que é ?
+    -como funciona
+    -tratar com try/catch
+
+-Pesquisar/Implementar requicisao com axios
+
+-Usando axios fazer requisicao no JasonPlaceHolder
+
+-Usar LocalStorage 
