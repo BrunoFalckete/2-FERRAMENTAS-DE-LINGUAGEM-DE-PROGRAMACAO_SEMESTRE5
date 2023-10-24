@@ -4,6 +4,7 @@ import {
   IsString,
   IsStrongPassword,
 } from 'class-validator';
+import { User } from '../entities/user.entity';
 
 /**
  * Description placeholder
@@ -13,7 +14,7 @@ import {
  * @class CreateUserDto
  * @typedef {CreateUserDto}
  */
-export class CreateUserDto {
+export class CreateUserDto implements User {
   /**
    * Description placeholder
    * @date 16/10/2023 - 21:30:50
@@ -39,6 +40,7 @@ export class CreateUserDto {
   @IsString()
   @IsOptional()
   name?: string;
+
   /**
    * Description placeholder
    * @date 16/10/2023 - 21:30:50

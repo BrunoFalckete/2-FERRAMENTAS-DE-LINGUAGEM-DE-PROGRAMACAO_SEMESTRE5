@@ -1,3 +1,0 @@
-//extensao: JSDoc generator
-//crtl+shift+p: Generate Jsdoc for the current file (gera a documentacao)
-//cria controller/module/service automaticamente: nest g resource model/product
