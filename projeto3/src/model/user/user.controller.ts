@@ -4,6 +4,9 @@ import { UserService } from './user.service';
 import { UserDTO } from '../user';
 import { DeleteUserDto } from './dto/delete-user-dto';
 import { UpdateUserDto } from './dto/update-user-dto';
+import { ApiTags } from '@nestjs/swagger';
+
+@ApiTags('user')
 
 //TRABALHO: instalar e configurar o SWAGGER no projeto
 @Controller('user')

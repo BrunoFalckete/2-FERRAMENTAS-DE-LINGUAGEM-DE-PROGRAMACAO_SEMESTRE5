@@ -10,12 +10,7 @@ export class AppController {
     private userService: UserService,
   ) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
-
-  @Post()
+@Post()
   async addUser(@Body() user: UserDTO) {
     const u = await this.userService.createUser(user);
     return u;
