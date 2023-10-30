@@ -31,7 +31,7 @@ export class UserController {
   }
 
   @Patch('/:id')
-  updade(@Param('id') id: string, @Body() user: UpdateUserDto) {
-    return this.userService.update();
+  updade(@Param('id') id: string, @Body() user: UpdateUserDto & UserDTO) {
+    return this.userService.update(id, user);
   }
 }
