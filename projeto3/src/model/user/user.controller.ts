@@ -1,15 +1,17 @@
-import { Body, Controller, Post, Get, Param, Delete, Patch } from '@nestjs/common';
+import { Body, Controller, Post, Get, Param, Delete, Patch, UseInterceptors } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user-dto';
 import { UserService } from './user.service';
 import { UserDTO } from '../user';
 import { DeleteUserDto } from './dto/delete-user-dto';
 import { UpdateUserDto } from './dto/update-user-dto';
 import { ApiTags } from '@nestjs/swagger';
+import { LogInterceptor } from 'src/common/interceptors/log-interceptor';
 
 @ApiTags('user')
 
 //TRABALHO: instalar e configurar o SWAGGER no projeto
 @Controller('user')
+@UseInterceptors(LogInterceptor) //interceptor em todo o metodo
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -38,3 +40,4 @@ export class UserController {
     return this.userService.update(id, user);
   }
 }
+

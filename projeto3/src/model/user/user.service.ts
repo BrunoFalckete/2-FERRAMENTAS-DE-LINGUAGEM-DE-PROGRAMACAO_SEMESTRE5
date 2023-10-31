@@ -4,6 +4,8 @@ import { CreateUserDto } from './dto/create-user-dto';
 import { hash, compare } from 'bcrypt';
 import { UserDTO } from '../user';
 import { DeleteUserDto } from './dto/delete-user-dto';
+import { UserExistException } from 'src/common/exceptions/user/email-in-use.exeption';
+import { UserNotFoundException } from 'src/common/exceptions/user/user-not-found.exeption';
 
 @Injectable()
 export class UserService {
@@ -12,8 +14,11 @@ export class UserService {
   async create(createUserDto: CreateUserDto): Promise<void> {
     try {
       const hashedPwd = await hash(createUserDto.password, 10);
-
       const lowerEmail = createUserDto.email.toLowerCase();
+      
+      //verify user exists
+      this.exists(lowerEmail);
+
       await this.prisma.user.create({
         data: {
           ...createUserDto,
@@ -39,6 +44,11 @@ export class UserService {
     const user = await this.prisma.user.findUnique({
       where: { email: lowerEmail },
     });
+
+    if(!user){
+      throw new UserNotFoundException();
+    }
+
     delete user.password;
     return user;
   }
@@ -68,4 +78,13 @@ export class UserService {
       console.log('pwd is incorrect!');
     }
   }
+
+  async exists(email: string){
+    if(await this.prisma.user.findUnique({
+      where: { email }
+    })){
+      throw new UserExistException();
+    }
+  }
+
 }
