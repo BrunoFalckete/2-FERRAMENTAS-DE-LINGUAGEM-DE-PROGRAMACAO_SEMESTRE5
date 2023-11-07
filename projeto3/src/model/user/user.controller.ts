@@ -9,7 +9,6 @@ import { LogInterceptor } from 'src/common/interceptors/log-interceptor';
 
 @ApiTags('user')
 
-//TRABALHO: instalar e configurar o SWAGGER no projeto
 @Controller('user')
 @UseInterceptors(LogInterceptor) //interceptor em todo o metodo
 export class UserController {

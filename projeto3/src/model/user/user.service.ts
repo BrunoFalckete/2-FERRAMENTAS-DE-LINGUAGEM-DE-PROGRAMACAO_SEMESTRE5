@@ -9,7 +9,12 @@ import { UserNotFoundException } from 'src/common/exceptions/user/user-not-found
 
 @Injectable()
 export class UserService {
+
   constructor(private readonly prisma: PrismaService) {}
+  
+  async findOne(email: string) {
+    return await this.prisma.user.findFirst({where:{email}})
+  }
 
   async create(createUserDto: CreateUserDto): Promise<void> {
     try {
